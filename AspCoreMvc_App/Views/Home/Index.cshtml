@@ -1,0 +1,45 @@
+﻿@model StudentDetail
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div>
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+        </tr>
+
+        @foreach (var k in ViewBag.students)
+        {
+    <tr>
+        <td>@k.ID</td>
+        <td>@k.Name</td>
+        <td>@k.Surname</td>
+        <td>
+            <a href="/Home/DeleteStudent/@k.ID" class="btn btn-danger">Delete</a>
+        </td>
+        <td>
+            <a href="/Home/GetStudent/@k.ID" class="btn btn-success">Update</a>
+        </td>
+    </tr>
+        }
+
+    </table>
+</div>
+
+<form method="post" class="form-group">
+    <b>Name</b>
+    @Html.TextBoxFor(x => x.Name)
+    <br />
+    <b>Surname</b>
+    @Html.TextBoxFor(x => x.Surname)
+    <br />
+    <button class="btn btn-info">Add Student</button>
+</form>
+

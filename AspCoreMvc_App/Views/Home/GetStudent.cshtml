@@ -1,0 +1,15 @@
+﻿@model StudentDetail
+@using (Html.BeginForm("UpdateStudent", "Home", FormMethod.Post))
+{
+    <br />
+    <b>Student ID</b>
+    @Html.TextBoxFor(x => x.ID, new { @readonly = "readonly", @Name = "" })
+    <br />
+    <b>Name</b>
+    @Html.TextBoxFor(x => x.Name)
+    <br />
+    <b>Surname</b>
+    @Html.TextBoxFor(x => x.Surname)
+    <br />
+    <button class="btn btn-info">Update</button>
+}

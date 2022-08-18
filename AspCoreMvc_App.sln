@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32802.440
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspCoreMvc_App", "AspCoreMvc_App\AspCoreMvc_App.csproj", "{74593B66-DC75-4CD1-AA98-14CAA03AE9D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genre.API", "Genre.API\Genre.API.csproj", "{446E2E05-84D1-4311-B839-F9FEEEBBCD22}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Games.API", "Games.API\Games.API.csproj", "{6608B53A-3858-4750-8DDD-AED7120FA94E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Library", "App.Library\App.Library.csproj", "{53729D3D-BB00-4023-B009-F176C2B183F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65D1CBCF-E310-473C-9565-DEB0F70921C7}"
+	ProjectSection(SolutionItems) = preProject
+		AspCoreMvc_App\.dockerignore = AspCoreMvc_App\.dockerignore
+		docker-compose.yml = docker-compose.yml
+		Dockerfile_games = Dockerfile_games
+		Dockerfile_genres = Dockerfile_genres
+		Dockerfile_mvc = Dockerfile_mvc
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74593B66-DC75-4CD1-AA98-14CAA03AE9D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74593B66-DC75-4CD1-AA98-14CAA03AE9D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74593B66-DC75-4CD1-AA98-14CAA03AE9D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74593B66-DC75-4CD1-AA98-14CAA03AE9D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{446E2E05-84D1-4311-B839-F9FEEEBBCD22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{446E2E05-84D1-4311-B839-F9FEEEBBCD22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{446E2E05-84D1-4311-B839-F9FEEEBBCD22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{446E2E05-84D1-4311-B839-F9FEEEBBCD22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6608B53A-3858-4750-8DDD-AED7120FA94E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6608B53A-3858-4750-8DDD-AED7120FA94E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6608B53A-3858-4750-8DDD-AED7120FA94E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6608B53A-3858-4750-8DDD-AED7120FA94E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53729D3D-BB00-4023-B009-F176C2B183F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53729D3D-BB00-4023-B009-F176C2B183F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53729D3D-BB00-4023-B009-F176C2B183F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53729D3D-BB00-4023-B009-F176C2B183F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4339E080-9BAE-4BA9-AFAE-86240C773317}
+	EndGlobalSection
+EndGlobal
