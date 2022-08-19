@@ -56,7 +56,6 @@ namespace AspCoreMvc_App
             }));
 
 
-
             //services.AddDbContextPool<StudentDetailContext>(options =>
             //{
             //    options.UseMySql($"server={host};userid=root;pwd={pw};"

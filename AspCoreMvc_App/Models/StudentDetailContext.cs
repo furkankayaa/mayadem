@@ -12,7 +12,7 @@ namespace AspCoreMvc_App.Models
         public StudentDetailContext(DbContextOptions<StudentDetailContext> options) : base(options)
         {
         }
-        public DbSet<StudentDetail> StudentDetails { get; set; }
+        //public DbSet<StudentDetail> StudentDetails { get; set; }
         public DbSet<UserData> UserDatas { get; set; }
         //Table name StudentDetails
     }

@@ -26,8 +26,10 @@ namespace Genre.API.Controllers
         }
 
         //List<GenreDetail> toAdd = new List<GenreDetail> {
-        //    new GenreDetail { CategoryName = "PS4" },
-        //    new GenreDetail { CategoryName = "PS5" },
+        //    new GenreDetail { CategoryName = "Spor" },
+        //    new GenreDetail { CategoryName = "Macera" },
+        //    new GenreDetail { CategoryName = "Simülasyon" },
+        //    new GenreDetail { CategoryName = "FPS" }
         //};
 
         [HttpGet]

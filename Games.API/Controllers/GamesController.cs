@@ -53,7 +53,7 @@ namespace Games.API.Controllers
             List<GameDetailResponse> allGames = new List<GameDetailResponse>();
             foreach (var i in games_list)
             {
-                allGames.Add(GetCategoryName(i));
+                allGames.Add(GetRequest.GetGameDetailResponse(i));
             }
             GenericResponse<List<GameDetailResponse>> toReturn = new GenericResponse<List<GameDetailResponse>> { Response = allGames, Code=ResponseCode.OK };
 
@@ -65,62 +65,14 @@ namespace Games.API.Controllers
         {
             var game = await _context.GameDetails.FindAsync(id);
 
-            GameDetailResponse myResponse = GetCategoryName(game);
+            GameDetailResponse myResponse = GetRequest.GetGameDetailResponse(game);
             GenericResponse<GameDetailResponse> toReturn = new GenericResponse<GameDetailResponse> { Response = myResponse, Code = ResponseCode.OK };
 
-            return toReturn
+            return toReturn;
 
         }
 
-        public static GameDetailResponse GetCategoryName(GameDetail game)
-        {
-            List<GenreDetail> genres = new List<GenreDetail> { };
-
-            //While working on Docker container
-            //var categories = GetApi($"http://genres.api/api/Genres/getall");
-
-            //While working on local
-            var categories = GetApi($"http://localhost:5002/api/Genres/getall");
-
-            JArray jArray = JArray.Parse(categories);
-            foreach (JObject jObject in jArray)
-            {
-                genres.Add(new GenreDetail { GenreID = (int)jObject["genreID"], CategoryName = (string)jObject["categoryName"] });
-            }
-            var catName = genres.Where(x => x.GenreID == game.GenreID).FirstOrDefault().CategoryName;
-
-
-            GameDetailResponse myResponse = new GameDetailResponse
-            {
-                ID = game.ID,
-                Description = game.Description,
-                GameName = game.GameName,
-                GamePrice = game.GamePrice,
-                Publisher = game.Publisher,
-                GenreID = game.GenreID,
-                CategoryName = catName
-            };
-
-            return myResponse;
-        }
         
-        public static string GetApi(string ApiUrl)
-        {
 
-            var responseString = "";
-            var request = (HttpWebRequest)WebRequest.Create(ApiUrl);
-            request.Method = "GET";
-            request.ContentType = "application/json";
-
-            using (var response1 = request.GetResponse())
-            {
-                using (var reader = new StreamReader(response1.GetResponseStream()))
-                {
-                    responseString = reader.ReadToEnd();
-                }
-            }
-            return responseString;
-
-        }
     }
 }
