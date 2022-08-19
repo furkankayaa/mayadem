@@ -12,8 +12,15 @@ namespace AspCoreMvc_App.ViewComponents
         public IViewComponentResult Invoke(GenreDetail category)
         {
             var allGames = GetRequest.GetAllGames();
-            var categoryGames = allGames.Where(x => x.GenreID == category.GenreID).ToList();
-            return View(categoryGames);
+            if (category == null)
+            {
+                return View(allGames);
+            }else
+            {
+                var categoryGames = allGames.Where(x => x.GenreID == category.GenreID).ToList();
+                return View(categoryGames);
+            }
+
         }
     }
 }

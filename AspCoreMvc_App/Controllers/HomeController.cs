@@ -26,6 +26,7 @@ namespace AspCoreMvc_App.Controllers
             _context = context;
         }
        
+        [Route("")]
         [Route("[action]")]
         public IActionResult Index()
         {
@@ -45,15 +46,11 @@ namespace AspCoreMvc_App.Controllers
             return View(allCategories);
         }
 
+        [Route("[action]")]
         public IActionResult Privacy()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

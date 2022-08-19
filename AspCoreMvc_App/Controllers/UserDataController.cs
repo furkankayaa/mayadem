@@ -25,12 +25,6 @@ namespace AspCoreMvc_App.Controllers
         public IActionResult Index()
         {
 
-            //if (CheckLogin() == true)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
-            //else
-            //{
             if(!HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Cookies"))
                 return View();
             else
@@ -40,25 +34,6 @@ namespace AspCoreMvc_App.Controllers
             //}
         }
 
-        //[HttpPost]
-        //public IActionResult Verify(string uname, string pwd)
-        //{
-        //var verify_user = _context.UserDatas.Find(uname);
-        //if (verify_user != null)
-        //{
-        //    if (verify_user.Password == pwd)
-        //    {
-        //        HttpContext.Session.SetString("login", "1");
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    else
-        //    {
-        //        return View("Error");
-        //    }
-        //}
-
-        //return View("Error");
-        //}
         [HttpPost]
         public async Task<IActionResult> Verify(string uname, string pwd)
         {
@@ -78,7 +53,7 @@ namespace AspCoreMvc_App.Controllers
                 //Just redirect to our index after logging in. 
                 return RedirectToAction("Index", "Home");
             }
-            return View("Error");
+            return View("Index");
         }
 
         [HttpPost]
@@ -91,48 +66,16 @@ namespace AspCoreMvc_App.Controllers
             }
             else
             {
-                return View("Error");
+                return View("Index");
             }
             
         }
 
-        //public IActionResult Log_Out()
-        //{
-        //    HttpContext.Session.SetString("login", "0");
-        //    return RedirectToAction("Index", "UserData");
-        //}
         public async Task<IActionResult> Log_Out()
         {
-            // SomeOtherPage is where we redirect to after signout
             await HttpContext.SignOutAsync("Cookies");
             return RedirectToAction("Index", "UserData");
-            //await MyCustomSignOut("Index", "UserData");
         }
 
-        //public async Task<IActionResult> MyCustomSignOut(string redirectUri, string controller)
-        //{
-        //    // inject the HttpContextAccessor to get "context"
-            
-
-        //    //var prop = new AuthenticationProperties()
-        //    //{
-        //    //    RedirectUri = redirectUri
-        //    //};
-        //    //// after signout this will redirect to your provided target
-        //    //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //    //await HttpContext.SignOutAsync("oidc", prop);
-        //}
-        public bool CheckLogin()
-        {
-            bool result = false;
-            if (HttpContext.Session.GetString("login") != null)
-            {
-                if (HttpContext.Session.GetString("login") == "1")
-                {
-                    result = true;
-                }
-            }
-            return result;
-        }
     }
 }
