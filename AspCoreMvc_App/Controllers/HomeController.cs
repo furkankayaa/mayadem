@@ -13,8 +13,6 @@ using App.Library;
 
 namespace AspCoreMvc_App.Controllers
 {
-    [Authorize]
-    [Route("[controller]")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -26,16 +24,17 @@ namespace AspCoreMvc_App.Controllers
             _context = context;
         }
        
+        [HttpGet]
         [Route("")]
         [Route("[action]")]
         public IActionResult Index()
         {
             var allCategories = GetRequest.GetCategories();
-            //ViewBag.category = allCategories;
+            ViewBag.category = allCategories;
             return View(allCategories);
         }
 
-        //BURADA KALDIM 18.08
+        [HttpGet]
         [Route("[action]/{categoryId}")]
         public IActionResult Index(int categoryId)
         {
@@ -47,8 +46,9 @@ namespace AspCoreMvc_App.Controllers
         }
 
         [Route("[action]")]
-        public IActionResult Privacy()
+        public IActionResult Cart()
         {
+            GetRequest.GetCategories();
             return View();
         }
 

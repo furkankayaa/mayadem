@@ -10,6 +10,9 @@ WORKDIR /src
 COPY ["./AspCoreMvc_App/AspCoreMvc_App.csproj", "AspCoreMvc_App/"]
 RUN dotnet restore "./AspCoreMvc_App/AspCoreMvc_App.csproj"
 COPY ./AspCoreMvc_App ./AspCoreMvc_App
+COPY ["/App.Library/App.Library.csproj", "App.Library/"]
+COPY ./App.Library/ ./App.Library/
+
 WORKDIR "/src/AspCoreMvc_App"
 RUN dotnet build "AspCoreMvc_App.csproj" -c Release -o /app/build
 

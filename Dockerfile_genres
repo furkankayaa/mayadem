@@ -8,6 +8,7 @@ RUN dotnet restore "./Genre.API/Genre.API.csproj"
 COPY ./Genre.API ./Genre.API
 COPY ["/App.Library/App.Library.csproj", "App.Library/"]
 COPY ./App.Library/ ./App.Library/
+
 WORKDIR "/src/Genre.API"
 RUN dotnet build "Genre.API.csproj" -c Release -o /app/build
 

@@ -79,7 +79,7 @@ namespace App.Library
             List<GameDetailResponse> games = new List<GameDetailResponse> { };
 
             //While working on Docker container
-            //var categories = GetApi($"http://genres.api/api/Games/getall");
+            //var gameResponse = GetApi($"http://genres.api/api/Games/getall");
 
             //While working on local
             var gameResponse = GetApi($"http://localhost:5000/api/Games/getall");

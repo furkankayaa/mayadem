@@ -1,6 +1,7 @@
 ﻿@model UserData
 
 @{
+    ViewData["Title"] = "Log-in";
     Layout = null;
 }
 <style>
@@ -128,7 +129,7 @@
     });
 </script>
 
-<div class="login-page">
+<div class="login-page" style="margin-top: 10%">
     <div class="form">
         <form asp-controller="UserData" asp-action="Create" class="register-form" method="post">
             <input name="name" type="text" placeholder="name" />

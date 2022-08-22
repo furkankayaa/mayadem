@@ -31,7 +31,6 @@ namespace AspCoreMvc_App.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            //}
         }
 
         [HttpPost]
@@ -74,7 +73,7 @@ namespace AspCoreMvc_App.Controllers
         public async Task<IActionResult> Log_Out()
         {
             await HttpContext.SignOutAsync("Cookies");
-            return RedirectToAction("Index", "UserData");
+            return RedirectToAction("Index", "Home");
         }
 
     }
