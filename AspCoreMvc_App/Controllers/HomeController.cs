@@ -45,18 +45,40 @@ namespace AspCoreMvc_App.Controllers
             return View(allCategories);
         }
 
+        
+        
 
         [Route("[action]")]
-        public IActionResult Cart([FromQuery(Name = "redirectUrl")] string redirectUrl, [FromQuery(Name = "redirectCtrl")] string redirectCtrl)
+        public IActionResult Cart([FromQuery(Name = "redirectUrl")] string redirectUrl, [FromQuery(Name = "redirectCtrl")] string redirectCtrl, [FromQuery(Name = "gameId")] int gameId)
         {
-            GetRequest.GetCategories();
+            var cartItems = GetRequest.GetCartItems();
+
             if (!HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Cookies"))
             {
-                return RedirectToAction("Index", "UserData", new { redirectUrl = redirectUrl, redirectCtrl = redirectCtrl });
+
+                return RedirectToAction("Index", "UserData", new { redirectUrl = redirectUrl, redirectCtrl = redirectCtrl, gameId =gameId });
             }
             else
             {
-                return View();
+                
+                if (gameId != 0)
+                {
+                    
+                    //While working on Docker container
+                    //var url = "http://cart.api/api/cart/post";
+
+                    //While working on local
+                    var url = "http://localhost:5004/api/cart/post";
+
+                    var game = GetRequest.GetGameById(gameId);
+                    var postResponse = PostRequest.PostApiAsync(url, game);
+                    return View(cartItems);
+                }
+                else
+                {
+
+                    return View(cartItems);
+                }
             }
                 
         }

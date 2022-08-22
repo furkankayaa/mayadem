@@ -22,7 +22,7 @@
                     <h6 class="card-title">@i.CategoryName</h6>
                     <h6 class="card-title">@i.Publisher</h6>
                     <a href="#" class="btn btn-primary">More</a>
-                    <a  asp-controller="home" asp-action="cart" asp-route-redirectUrl="Cart" asp-route-redirectCtrl="Home" class="btn btn-success">Add to Cart</a>
+                    <a  asp-controller="Home" asp-action="Cart" asp-route-redirectUrl="Cart" asp-route-redirectCtrl="Home" asp-route-gameId=@i.ID class="btn btn-success">Add to Cart</a>
                 </div>
             </div>
         </div>

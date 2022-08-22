@@ -8,4 +8,5 @@ C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\App.Library\obj
 C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\App.Library\obj\Debug\net5.0\App.Library.dll
 C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\App.Library\obj\Debug\net5.0\ref\App.Library.dll
 C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\App.Library\obj\Debug\net5.0\App.Library.pdb
-C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\App.Library\bin\Debug\net5.0\ref\App.Library.dll
+C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\App.Library\obj\Debug\net5.0\App.Library.csproj.AssemblyReference.cache
+C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\App.Library\obj\Debug\net5.0\refint\App.Library.dll

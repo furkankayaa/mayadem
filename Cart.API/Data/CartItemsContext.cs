@@ -14,7 +14,7 @@ namespace Cart.API.Data
         {
         }
 
-        DbSet<CartItemDetail> CartItemDetails { get; set; }
+        public DbSet<CartItemDetail> CartItemDetails { get; set; }
     }
 }
    

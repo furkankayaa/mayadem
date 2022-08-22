@@ -45,23 +45,26 @@ namespace AspCoreMvc_App.Controllers
         {
             string redirectUrl = HttpContext.Request.Query["redirectUrl"].ToString();
             string redirectCtrl = HttpContext.Request.Query["redirectCtrl"].ToString();
+            string gameId = HttpContext.Request.Query["gameId"].ToString();
 
             var verify_user = _context.UserDatas.Find(uname);
             if (verify_user != null && verify_user.Password == pwd)
             {
                 var claims = new List<Claim>
                     {
-                    new Claim(ClaimTypes.Name, uname)
+                    new Claim("UserName", uname)
                     };
 
                 var userIdentity = new ClaimsIdentity(claims, "login");
-
+                
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                 await HttpContext.SignInAsync("Cookies", principal);
 
+                
+
                 if (redirectUrl != "" && redirectCtrl != "")          
                 {
-                    return RedirectToAction(redirectUrl, redirectCtrl);
+                    return RedirectToAction(redirectUrl, redirectCtrl, new {gameId = gameId});
                 }else
                 {
                     //Just redirect to our index after logging in. 

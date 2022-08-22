@@ -79,7 +79,7 @@ namespace App.Library
             List<GameDetailResponse> games = new List<GameDetailResponse> { };
 
             //While working on Docker container
-            //var gameResponse = GetApi($"http://genres.api/api/Games/getall");
+            //var gameResponse = GetApi($"http://games.api/api/Games/getall");
 
             //While working on local
             var gameResponse = GetApi($"http://localhost:5000/api/Games/getall");
@@ -92,6 +92,47 @@ namespace App.Library
             }
 
             return games;
+        }
+
+        public static GameDetailResponse GetGameById(int id)
+        {
+            List<GameDetailResponse> games = new List<GameDetailResponse> { };
+
+            //While working on Docker container
+            //var gameResponse = GetApi($"http://games.api/api/Games/getbyid/{id}");
+
+            //While working on local
+            var gameResponse = GetApi($"http://localhost:5000/api/Games/getbyid/{id}");
+            JObject responseObject = JObject.Parse(gameResponse);
+
+            JObject jObject = (JObject)responseObject["response"];
+            
+            
+            var toReturn = new GameDetailResponse { ID = (int)jObject["id"], GameName = (string)jObject["gameName"], Description = (string)jObject["description"], 
+                GamePrice = (double)jObject["gamePrice"], Publisher = (string)jObject["publisher"], ImageUrl = (string)jObject["imageUrl"], GenreID = (int)jObject["genreID"], CategoryName = (string)jObject["categoryName"] };    
+
+            return toReturn;
+        }
+
+        public static List<CartItemDetail> GetCartItems()
+        {
+            List<CartItemDetail> cartItems = new List<CartItemDetail>();
+
+            //While working on Docker container
+            //var cartResponse = GetApi($"http://cart.api/api/cart/getall");
+
+            //While working on local
+            var cartResponse = GetApi($"http://localhost:5004/api/cart/getall");
+            JObject responseObject = JObject.Parse(cartResponse);
+
+            JArray jArray = (JArray)responseObject["response"];
+            foreach (JObject jObject in jArray)
+            {
+                cartItems.Add(new CartItemDetail { ID = (int)jObject["id"], GameName = (string)jObject["gameName"], GamePrice = (double)jObject["gamePrice"], Publisher = (string)jObject["publisher"], ImageUrl = (string)jObject["imageUrl"], UserName= "a" });
+            }
+
+            return cartItems;
+
         }
     }
 }
