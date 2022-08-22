@@ -37,4 +37,5 @@ C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Games.API\bin\D
 C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Games.API\bin\Debug\net5.0\App.Library.dll
 C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Games.API\bin\Debug\net5.0\App.Library.pdb
 C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Games.API\bin\Debug\net5.0\Newtonsoft.Json.dll
-C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Games.API\obj\Debug\net5.0\refint\Games.API.dll
+C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Games.API\obj\Debug\net5.0\staticwebassets\Games.API.StaticWebAssets.xml
+C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Games.API\bin\Debug\net5.0\ref\Games.API.dll

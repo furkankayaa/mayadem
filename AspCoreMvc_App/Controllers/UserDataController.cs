@@ -25,17 +25,27 @@ namespace AspCoreMvc_App.Controllers
         public IActionResult Index()
         {
 
-            if(!HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Cookies"))
+
+            if (!HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Cookies"))
+            {
+                ViewBag.redirectUrl = HttpContext.Request.Query["redirectUrl"].ToString();
+                ViewBag.redirectCtrl = HttpContext.Request.Query["redirectCtrl"].ToString();
                 return View();
+            }
             else
             {
                 return RedirectToAction("Index", "Home");
             }
+            
+            
         }
 
         [HttpPost]
         public async Task<IActionResult> Verify(string uname, string pwd)
         {
+            string redirectUrl = HttpContext.Request.Query["redirectUrl"].ToString();
+            string redirectCtrl = HttpContext.Request.Query["redirectCtrl"].ToString();
+
             var verify_user = _context.UserDatas.Find(uname);
             if (verify_user != null && verify_user.Password == pwd)
             {
@@ -49,8 +59,14 @@ namespace AspCoreMvc_App.Controllers
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                 await HttpContext.SignInAsync("Cookies", principal);
 
-                //Just redirect to our index after logging in. 
-                return RedirectToAction("Index", "Home");
+                if (redirectUrl != "" && redirectCtrl != "")          
+                {
+                    return RedirectToAction(redirectUrl, redirectCtrl);
+                }else
+                {
+                    //Just redirect to our index after logging in. 
+                    return RedirectToAction("Index", "Home");
+                }
             }
             return View("Index");
         }

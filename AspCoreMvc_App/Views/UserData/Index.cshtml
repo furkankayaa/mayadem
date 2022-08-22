@@ -1,5 +1,4 @@
 ﻿@model UserData
-
 @{
     ViewData["Title"] = "Log-in";
     Layout = null;
@@ -138,7 +137,7 @@
             <button>create</button>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
-        <form asp-controller="UserData" asp-action="Verify" class="login-form" method="post">
+        <form asp-controller="UserData" asp-action="Verify" asp-route-redirectUrl=@ViewBag.redirectUrl asp-route-redirectCtrl=@ViewBag.redirectCtrl class="login-form" method="post">
             <input name="uname" type="text" placeholder="username" />
             <input name="pwd" type="password" placeholder="password" />
             <button>login</button>

@@ -20,7 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Dockerfile_mvc = Dockerfile_mvc
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Card.API", "Card.API\Card.API.csproj", "{E8DAA28B-8C0E-47C8-BD3E-3BB36E45C18A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cart.API", "Cart.API\Cart.API.csproj", "{E8DAA28B-8C0E-47C8-BD3E-3BB36E45C18A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{53729D3D-BB00-4023-B009-F176C2B183F3} = {53729D3D-BB00-4023-B009-F176C2B183F3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

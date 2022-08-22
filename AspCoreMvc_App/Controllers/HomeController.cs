@@ -45,11 +45,20 @@ namespace AspCoreMvc_App.Controllers
             return View(allCategories);
         }
 
+
         [Route("[action]")]
-        public IActionResult Cart()
+        public IActionResult Cart([FromQuery(Name = "redirectUrl")] string redirectUrl, [FromQuery(Name = "redirectCtrl")] string redirectCtrl)
         {
             GetRequest.GetCategories();
-            return View();
+            if (!HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Cookies"))
+            {
+                return RedirectToAction("Index", "UserData", new { redirectUrl = redirectUrl, redirectCtrl = redirectCtrl });
+            }
+            else
+            {
+                return View();
+            }
+                
         }
 
     }

@@ -46,11 +46,6 @@ namespace Games.API
 
             services.AddCors();
 
-            //services.AddHttpsRedirection(options =>
-            //{
-            //    options.HttpsPort = 12341;
-            //});
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Games.API", Version = "v1" });
@@ -67,8 +62,7 @@ namespace Games.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Games.API v1"));
             }
 
-            //app.UseHttpsRedirection();
-
+           
 
             using (var scope =
                 app.ApplicationServices.CreateScope())
