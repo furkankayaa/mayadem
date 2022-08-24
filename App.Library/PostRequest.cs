@@ -11,7 +11,7 @@ namespace App.Library
 {
     public static class PostRequest
     {
-        public static async Task<string> PostApiAsync(string ApiUrl, GameDetailResponse game)
+        public static async Task<string> PostApiAsync(string ApiUrl, CartItemDetail game)
         {
 
             var json = JsonConvert.SerializeObject(game);
@@ -21,6 +21,16 @@ namespace App.Library
             using var client = new HttpClient();
 
             var response = await client.PostAsync(ApiUrl, data);
+
+            var result = await response.Content.ReadAsStringAsync();
+
+            return result;
+        }
+        public static async Task<string> DeleteApiAsync(string ApiUrl)
+        {
+            using var client = new HttpClient();
+
+            var response = await client.DeleteAsync(ApiUrl);
 
             var result = await response.Content.ReadAsStringAsync();
 

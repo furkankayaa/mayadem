@@ -8,9 +8,18 @@ namespace AspCoreMvc_App.Models
 {
     public class UserData
     {
-        [Key]
+        [Display(Name = "User Name")]
+        [Required(ErrorMessage = "Please input username!")]
         public string Username { get; set; }
+
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "Please input password!")]
         public string Password { get; set; }
+
+        [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage = "Does not match!")]
+        public string ConfirmPassword { get; set; }
+
 
     }
 }

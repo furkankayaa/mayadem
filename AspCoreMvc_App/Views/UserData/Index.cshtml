@@ -1,4 +1,5 @@
-﻿@model UserData
+﻿@*@model UserData*@
+@model Tuple<UserData, SignedUser>
 @{
     ViewData["Title"] = "Log-in";
     Layout = null;
@@ -131,15 +132,25 @@
 <div class="login-page" style="margin-top: 10%">
     <div class="form">
         <form asp-controller="UserData" asp-action="Create" class="register-form" method="post">
-            <input name="name" type="text" placeholder="name" />
-            <input name="pw" type="password" placeholder="password" />
-            <input name="cnf_pw" type="password" placeholder="confirm password" />
+            <div class="form-group">
+                <span asp-validation-for="@Model.Item1.Username" class="text-danger"></span>
+                <input name="Username" type="text" asp-for="@Model.Item1.Username" placeholder="Username" />
+            </div>
+            <div class="form-group">
+                <span asp-validation-for="@Model.Item1.Password" class="text-danger"></span>
+                <input name="Password" type="password" asp-for="@Model.Item1.Password" placeholder="Password" />
+            </div>
+            <div class="form-group">
+                <span asp-validation-for="@Model.Item1.ConfirmPassword" class="text-danger"></span>
+                <input name="ConfirmPassword" type="password" asp-for="@Model.Item1.ConfirmPassword" placeholder="Confirm password" />
+            </div>
             <button>create</button>
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
         <form asp-controller="UserData" asp-action="Verify" asp-route-redirectUrl=@ViewBag.redirectUrl asp-route-redirectCtrl=@ViewBag.redirectCtrl class="login-form" method="post">
-            <input name="uname" type="text" placeholder="username" />
-            <input name="pwd" type="password" placeholder="password" />
+            <input name="Username" type="text" asp-for="@Model.Item2.Username" placeholder="username" />
+            <input name="Password" type="password" asp-for="@Model.Item2.Password" placeholder="password" />
             <button>login</button>
             <p class="message">Not registered? <a href="#">Create an account</a></p>
         </form>

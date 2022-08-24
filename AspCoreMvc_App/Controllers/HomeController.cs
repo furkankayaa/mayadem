@@ -10,6 +10,7 @@ using AspCoreMvc_App.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using App.Library;
+using System.Security.Claims;
 
 namespace AspCoreMvc_App.Controllers
 {
@@ -24,6 +25,7 @@ namespace AspCoreMvc_App.Controllers
             _context = context;
         }
        
+        [AllowAnonymous]
         [HttpGet]
         [Route("")]
         [Route("[action]")]
@@ -34,6 +36,7 @@ namespace AspCoreMvc_App.Controllers
             return View(allCategories);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("[action]/{categoryId}")]
         public IActionResult Index(int categoryId)
@@ -49,11 +52,12 @@ namespace AspCoreMvc_App.Controllers
         
 
         [Route("[action]")]
-        public IActionResult Cart([FromQuery(Name = "redirectUrl")] string redirectUrl, [FromQuery(Name = "redirectCtrl")] string redirectCtrl, [FromQuery(Name = "gameId")] int gameId)
+        public async Task<IActionResult> CartAsync([FromQuery(Name = "redirectUrl")] string redirectUrl, [FromQuery(Name = "redirectCtrl")] string redirectCtrl, [FromQuery(Name = "gameId")] int gameId)
         {
-            var cartItems = GetRequest.GetCartItems();
+            string userName = User.Identity.Name;
+            var cartItems = GetRequest.GetCartItems(userName);
 
-            if (!HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Cookies"))
+            if (!HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Identity.Application"))
             {
 
                 return RedirectToAction("Index", "UserData", new { redirectUrl = redirectUrl, redirectCtrl = redirectCtrl, gameId =gameId });
@@ -71,7 +75,19 @@ namespace AspCoreMvc_App.Controllers
                     var url = "http://localhost:5004/api/cart/post";
 
                     var game = GetRequest.GetGameById(gameId);
-                    var postResponse = PostRequest.PostApiAsync(url, game);
+                    if (cartItems.Where(x => x.ID == gameId).FirstOrDefault() == null)
+                    {
+                        CartItemDetail gameToAdd = new CartItemDetail
+                        {
+                            GameName = game.GameName,
+                            GamePrice = game.GamePrice,
+                            ImageUrl = game.ImageUrl,
+                            Publisher = game.Publisher,
+                            UserName = userName
+                        };
+                        await PostRequest.PostApiAsync(url, gameToAdd);
+                        cartItems = GetRequest.GetCartItems(userName);
+                    }
                     return View(cartItems);
                 }
                 else
@@ -81,6 +97,21 @@ namespace AspCoreMvc_App.Controllers
                 }
             }
                 
+        }
+
+        [Route("[action]")]
+        public async Task<IActionResult> CartRemoveAsync(int id, string userName)
+        {
+            //While working on Docker container
+            //var url = $"http://cart.api/api/cart/delete?id={id}&userName={userName}";
+
+            //While working on local
+            var url = $"http://localhost:5004/api/cart/delete?id={id}&userName={userName}";
+
+            
+            await PostRequest.DeleteApiAsync(url);
+            
+            return RedirectToAction("Cart");
         }
 
     }

@@ -13,7 +13,7 @@ namespace AspCoreMvc_App.ViewComponents
         public IViewComponentResult Invoke()
         {
             ViewBag.isLoggedIn = false;
-            if (HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Cookies"))
+            if (HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Identity.Application"))
             {
                 ViewBag.isLoggedIn = true;
             }

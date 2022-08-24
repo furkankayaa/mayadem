@@ -14,6 +14,12 @@ using AspCoreMvc_App.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using App.Library;
+using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace AspCoreMvc_App
 {
@@ -29,31 +35,52 @@ namespace AspCoreMvc_App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
-            services.AddMvc();
+            //services.AddCors();
+
+            services.AddDbContext<StudentDetailContext>();
+            services.AddIdentity<AppUser, AppRole>(x =>
+            {
+                x.Password.RequireUppercase = false;
+                x.Password.RequireNonAlphanumeric = false;
+                x.Password.RequiredLength = 2;
+            }).AddEntityFrameworkStores<StudentDetailContext>();
+
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                                    .RequireAuthenticatedUser()
+                                    .Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {
-                        options.LoginPath = "/UserData/Verify/";
+                        options.LoginPath = "/UserData/Index/";
                         //options.LogoutPath = "/UserData/Index/";
                     });
+
             services.AddSession();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-
+            //services.AddScoped<IDbContextOptions, DbContextOptions>();
+            
             //var mysqlConnectionString = Configuration.GetConnectionString("mysqlConnectionString");
 
-            var host = Configuration["DBHOST"] ?? "localhost";
-            var port = Configuration["DBPORT"] ?? "3306";
-            var pw = Configuration["DBPASSWORD"] ?? "123";
+            //var host = Configuration["DBHOST"] ?? "localhost";
+            //var port = Configuration["DBPORT"] ?? "3306";
+            //var pw = Configuration["DBPASSWORD"] ?? "123";
 
-            var mysqlConnectionString = $"server={host};userid=root;pwd={pw};" + $"port={port};database=Student-DB";
+            //var mysqlConnectionString = $"server={host};userid=root;pwd={pw};" + $"port={port};database=Student-DB";
 
-            services.AddDbContextPool<StudentDetailContext>(options =>
-            options.UseMySql(mysqlConnectionString, ServerVersion.AutoDetect(mysqlConnectionString), mySqlOptions =>
-            {
-                mySqlOptions.EnableRetryOnFailure();
-            }));
+            //services.AddDbContext<StudentDetailContext>(options =>
+            //    options.UseMySql(mysqlConnectionString, ServerVersion.AutoDetect(mysqlConnectionString), mySqlOptions =>
+            //    {
+            //        mySqlOptions.EnableRetryOnFailure();
+            //    }),
+            //    contextLifetime: ServiceLifetime.Transient,
+            //    optionsLifetime: ServiceLifetime.Singleton
+            //) ;
 
 
             //services.AddDbContextPool<StudentDetailContext>(options =>
@@ -78,7 +105,7 @@ namespace AspCoreMvc_App
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             using (var scope =

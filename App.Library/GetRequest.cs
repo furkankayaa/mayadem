@@ -114,21 +114,21 @@ namespace App.Library
             return toReturn;
         }
 
-        public static List<CartItemDetail> GetCartItems()
+        public static List<CartItemDetail> GetCartItems(string userName)
         {
             List<CartItemDetail> cartItems = new List<CartItemDetail>();
 
             //While working on Docker container
-            //var cartResponse = GetApi($"http://cart.api/api/cart/getall");
+            //var cartResponse = GetApi($"http://cart.api/api/cart/getall?userName={userName}");
 
             //While working on local
-            var cartResponse = GetApi($"http://localhost:5004/api/cart/getall");
+            var cartResponse = GetApi($"http://localhost:5004/api/cart/getall?userName={userName}");
             JObject responseObject = JObject.Parse(cartResponse);
 
             JArray jArray = (JArray)responseObject["response"];
             foreach (JObject jObject in jArray)
             {
-                cartItems.Add(new CartItemDetail { ID = (int)jObject["id"], GameName = (string)jObject["gameName"], GamePrice = (double)jObject["gamePrice"], Publisher = (string)jObject["publisher"], ImageUrl = (string)jObject["imageUrl"], UserName= "a" });
+                cartItems.Add(new CartItemDetail { ID = (int)jObject["id"], GameName = (string)jObject["gameName"], GamePrice = (double)jObject["gamePrice"], Publisher = (string)jObject["publisher"], ImageUrl = (string)jObject["imageUrl"], UserName= userName });
             }
 
             return cartItems;

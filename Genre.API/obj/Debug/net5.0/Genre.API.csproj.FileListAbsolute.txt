@@ -37,4 +37,9 @@ C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Genre.API\bin\D
 C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Genre.API\bin\Debug\net5.0\App.Library.dll
 C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Genre.API\bin\Debug\net5.0\App.Library.pdb
 C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Genre.API\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Genre.API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Genre.API\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Genre.API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Genre.API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Genre.API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\kayaf\Desktop\Furkan\Staj\Mayadem\Docker\AspNetCore-Son\Genre.API\obj\Debug\net5.0\refint\Genre.API.dll

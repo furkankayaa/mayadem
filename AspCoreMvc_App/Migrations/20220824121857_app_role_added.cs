@@ -2,7 +2,7 @@
 
 namespace AspCoreMvc_App.Migrations
 {
-    public partial class newTest1 : Migration
+    public partial class app_role_added : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
