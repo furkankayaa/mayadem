@@ -59,10 +59,10 @@ namespace App.Library
             List<GenreDetail> genres = new List<GenreDetail> { };
 
             //While working on Docker container
-            //var categories = GetApi($"http://genres.api/api/Genres/getall");
+            var categories = GetApi($"http://genres.api/api/Genres/getall");
 
             //While working on local
-            var categories = GetApi($"http://localhost:5002/api/Genres/getall");
+            //var categories = GetApi($"http://localhost:5002/api/Genres/getall");
 
             JArray jArray = JArray.Parse(categories);
             foreach (JObject jObject in jArray)
@@ -79,10 +79,10 @@ namespace App.Library
             List<GameDetailResponse> games = new List<GameDetailResponse> { };
 
             //While working on Docker container
-            //var gameResponse = GetApi($"http://games.api/api/Games/getall");
+            var gameResponse = GetApi($"http://games.api/api/Games/getall");
 
             //While working on local
-            var gameResponse = GetApi($"http://localhost:5000/api/Games/getall");
+            //var gameResponse = GetApi($"http://localhost:5000/api/Games/getall");
             JObject responseObject = JObject.Parse(gameResponse);
 
             JArray jArray = (JArray)responseObject["response"];
@@ -99,10 +99,10 @@ namespace App.Library
             List<GameDetailResponse> games = new List<GameDetailResponse> { };
 
             //While working on Docker container
-            //var gameResponse = GetApi($"http://games.api/api/Games/getbyid/{id}");
+            var gameResponse = GetApi($"http://games.api/api/Games/getbyid/{id}");
 
             //While working on local
-            var gameResponse = GetApi($"http://localhost:5000/api/Games/getbyid/{id}");
+            //var gameResponse = GetApi($"http://localhost:5000/api/Games/getbyid/{id}");
             JObject responseObject = JObject.Parse(gameResponse);
 
             JObject jObject = (JObject)responseObject["response"];
@@ -119,10 +119,10 @@ namespace App.Library
             List<CartItemDetail> cartItems = new List<CartItemDetail>();
 
             //While working on Docker container
-            //var cartResponse = GetApi($"http://cart.api/api/cart/getall?userName={userName}");
+            var cartResponse = GetApi($"http://cart.api/api/cart/getall?userName={userName}");
 
             //While working on local
-            var cartResponse = GetApi($"http://localhost:5004/api/cart/getall?userName={userName}");
+            //var cartResponse = GetApi($"http://localhost:5004/api/cart/getall?userName={userName}");
             JObject responseObject = JObject.Parse(cartResponse);
 
             JArray jArray = (JArray)responseObject["response"];

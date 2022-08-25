@@ -148,7 +148,8 @@
             <div class="text-danger" asp-validation-summary="ModelOnly"></div>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
-        <form asp-controller="UserData" asp-action="Verify" asp-route-redirectUrl=@ViewBag.redirectUrl asp-route-redirectCtrl=@ViewBag.redirectCtrl class="login-form" method="post">
+        @*asp-route-redirectUrl=@ViewBag.redirectUrl asp-route-redirectCtrl=@ViewBag.redirectCtrl*@
+        <form asp-controller="UserData" asp-action="Verify" asp-route-ReturnUrl="@ViewBag.ReturnUrl" class="login-form" method="post">
             <input name="Username" type="text" asp-for="@Model.Item2.Username" placeholder="username" />
             <input name="Password" type="password" asp-for="@Model.Item2.Password" placeholder="password" />
             <button>login</button>

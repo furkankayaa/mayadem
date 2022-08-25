@@ -52,29 +52,31 @@ namespace AspCoreMvc_App.Controllers
         
 
         [Route("[action]")]
-        public async Task<IActionResult> CartAsync([FromQuery(Name = "redirectUrl")] string redirectUrl, [FromQuery(Name = "redirectCtrl")] string redirectCtrl, [FromQuery(Name = "gameId")] int gameId)
+        public async Task<IActionResult> CartAsync([FromQuery(Name = "gameId")] int gameId)
         {
             string userName = User.Identity.Name;
             var cartItems = GetRequest.GetCartItems(userName);
 
-            if (!HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Identity.Application"))
-            {
-
-                return RedirectToAction("Index", "UserData", new { redirectUrl = redirectUrl, redirectCtrl = redirectCtrl, gameId =gameId });
-            }
-            else
-            {
+            //if (!HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Identity.Application"))
+            //{
+                //string returnUrl = HttpContext.Request.Query["ReturnUrl"].ToString();
+                //return Redirect(returnUrl);
+                //return RedirectToAction("Index", "UserData", new { redirectUrl = redirectUrl, redirectCtrl = redirectCtrl, gameId = gameId });
+            //    return View();
+            //}
+            //else
+            //{
                 
                 if (gameId != 0)
                 {
-                    
-                    //While working on Docker container
-                    //var url = "http://cart.api/api/cart/post";
 
-                    //While working on local
-                    var url = "http://localhost:5004/api/cart/post";
+                //While working on Docker container
+                var url = "http://cart.api/api/cart/post";
 
-                    var game = GetRequest.GetGameById(gameId);
+                //While working on local
+                //var url = "http://localhost:5004/api/cart/post";
+
+                var game = GetRequest.GetGameById(gameId);
                     if (cartItems.Where(x => x.ID == gameId).FirstOrDefault() == null)
                     {
                         CartItemDetail gameToAdd = new CartItemDetail
@@ -95,7 +97,7 @@ namespace AspCoreMvc_App.Controllers
 
                     return View(cartItems);
                 }
-            }
+            //}
                 
         }
 
@@ -103,10 +105,10 @@ namespace AspCoreMvc_App.Controllers
         public async Task<IActionResult> CartRemoveAsync(int id, string userName)
         {
             //While working on Docker container
-            //var url = $"http://cart.api/api/cart/delete?id={id}&userName={userName}";
+            var url = $"http://cart.api/api/cart/delete?id={id}&userName={userName}";
 
             //While working on local
-            var url = $"http://localhost:5004/api/cart/delete?id={id}&userName={userName}";
+            //var url = $"http://localhost:5004/api/cart/delete?id={id}&userName={userName}";
 
             
             await PostRequest.DeleteApiAsync(url);

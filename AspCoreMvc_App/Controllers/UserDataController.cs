@@ -35,8 +35,10 @@ namespace AspCoreMvc_App.Controllers
         {
             if (!HttpContext.Request.Cookies.ContainsKey(".AspNetCore.Identity.Application"))
             {
-                ViewBag.redirectUrl = HttpContext.Request.Query["redirectUrl"].ToString();
-                ViewBag.redirectCtrl = HttpContext.Request.Query["redirectCtrl"].ToString();
+                ViewBag.ReturnUrl = HttpContext.Request.Query["ReturnUrl"].ToString();
+
+                //ViewBag.redirectUrl = HttpContext.Request.Query["redirectUrl"].ToString();
+                //ViewBag.redirectCtrl = HttpContext.Request.Query["redirectCtrl"].ToString();
                 return View();
             }
             else
@@ -50,19 +52,22 @@ namespace AspCoreMvc_App.Controllers
         //string uname, string pwd
         public async Task<IActionResult> Verify(SignedUser p)
         {
+            string returnUrl = HttpContext.Request.Query["ReturnUrl"].ToString();
 
-            string redirectUrl = HttpContext.Request.Query["redirectUrl"].ToString();
-            string redirectCtrl = HttpContext.Request.Query["redirectCtrl"].ToString();
-            string gameId = HttpContext.Request.Query["gameId"].ToString();
+            //string redirectUrl = HttpContext.Request.Query["redirectUrl"].ToString();
+            //string redirectCtrl = HttpContext.Request.Query["redirectCtrl"].ToString();
+            //string gameId = HttpContext.Request.Query["gameId"].ToString();
 
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(p.Username, p.Password, false, true);
                 if (result.Succeeded)
                 {
-                    if (redirectUrl != "" && redirectCtrl != "")
+                    //if (redirectUrl != "" && redirectCtrl != "")
+                    if(returnUrl != "")
                     {
-                        return RedirectToAction(redirectUrl, redirectCtrl, new { gameId = gameId });
+                        return Redirect(returnUrl);
+                        //return RedirectToAction(redirectUrl, redirectCtrl, new { gameId = gameId });
                     }
                     else
                     {

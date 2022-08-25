@@ -51,12 +51,14 @@ namespace AspCoreMvc_App
                                     .RequireAuthenticatedUser()
                                     .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
-            });
 
+            });
+            services.ConfigureApplicationCookie(options => { options.LoginPath = "/UserData";
+            }) ;
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {
-                        options.LoginPath = "/UserData/Index/";
+                        options.LoginPath = "/UserData/";
                         //options.LogoutPath = "/UserData/Index/";
                     });
 
@@ -114,6 +116,7 @@ namespace AspCoreMvc_App
                 var dbContext = scope.ServiceProvider.GetService<StudentDetailContext>();
                 dbContext.Database.Migrate();
             }
+
 
             app.UseSession();
             app.UseRouting();
