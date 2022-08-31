@@ -21,7 +21,6 @@ namespace AspCoreMvc_App.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
 
-        //StudentDetailContext _context = new StudentDetailContext();
         public UserDataController(StudentDetailContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _context = context;
@@ -37,8 +36,6 @@ namespace AspCoreMvc_App.Controllers
             {
                 ViewBag.ReturnUrl = HttpContext.Request.Query["ReturnUrl"].ToString();
 
-                //ViewBag.redirectUrl = HttpContext.Request.Query["redirectUrl"].ToString();
-                //ViewBag.redirectCtrl = HttpContext.Request.Query["redirectCtrl"].ToString();
                 return View();
             }
             else
@@ -54,10 +51,6 @@ namespace AspCoreMvc_App.Controllers
         {
             string returnUrl = HttpContext.Request.Query["ReturnUrl"].ToString();
 
-            //string redirectUrl = HttpContext.Request.Query["redirectUrl"].ToString();
-            //string redirectCtrl = HttpContext.Request.Query["redirectCtrl"].ToString();
-            //string gameId = HttpContext.Request.Query["gameId"].ToString();
-
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(p.Username, p.Password, false, true);
@@ -67,7 +60,6 @@ namespace AspCoreMvc_App.Controllers
                     if(returnUrl != "")
                     {
                         return Redirect(returnUrl);
-                        //return RedirectToAction(redirectUrl, redirectCtrl, new { gameId = gameId });
                     }
                     else
                     {
@@ -76,24 +68,6 @@ namespace AspCoreMvc_App.Controllers
                     }
                 }
             }
-            //var verify_user = _context.UserDatas.Find(uname);
-            //if (verify_user != null && verify_user.Password == pwd)
-            //{
-            //    var claims = new List<Claim>
-            //        {
-            //        new Claim(ClaimTypes.Name, uname),
-            //        new Claim(ClaimTypes.NameIdentifier, uname)
-            //        };
-
-            //    var userIdentity = new ClaimsIdentity(claims, "login");
-
-            //    ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
-            //    await HttpContext.SignInAsync("Cookies", principal);
-            //    HttpContext.User = principal;
-
-            //    Console.WriteLine(User.Identity.Name);
-
-            //}
             return View("Index");
         }
 
@@ -125,15 +99,6 @@ namespace AspCoreMvc_App.Controllers
                 }
             }
             return View("Index");
-            //if (pw == cnf_pw) {
-            //    _context.UserDatas.Add(new UserData { Username = name, Password = pw });
-            //    _context.SaveChanges();
-            //    return RedirectToAction("Index", "Home");
-            //}
-            //else
-            //{
-            //    return View("Index");
-            //}
 
         }
 
@@ -141,7 +106,6 @@ namespace AspCoreMvc_App.Controllers
         {
 
             await _signInManager.SignOutAsync();
-            //await HttpContext.SignOutAsync("Cookies");
             return RedirectToAction("Index", "Home");
         }
 

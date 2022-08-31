@@ -17,7 +17,7 @@ namespace AspCoreMvc_App.ViewComponents
                 return View(allGames);
             }else
             {
-                var categoryGames = allGames.Where(x => x.GenreID == category.GenreID).ToList();
+                var categoryGames = allGames.Where(x => x.CategoryName == category.CategoryName).ToList();
                 return View(categoryGames);
             }
 

@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cart.API", "Cart.API\Cart.A
 		{53729D3D-BB00-4023-B009-F176C2B183F3} = {53729D3D-BB00-4023-B009-F176C2B183F3}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.API", "Order.API\Order.API.csproj", "{DB3A8909-D6C7-48A0-8B7D-12B8ED1C44C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{E8DAA28B-8C0E-47C8-BD3E-3BB36E45C18A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8DAA28B-8C0E-47C8-BD3E-3BB36E45C18A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8DAA28B-8C0E-47C8-BD3E-3BB36E45C18A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB3A8909-D6C7-48A0-8B7D-12B8ED1C44C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB3A8909-D6C7-48A0-8B7D-12B8ED1C44C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB3A8909-D6C7-48A0-8B7D-12B8ED1C44C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB3A8909-D6C7-48A0-8B7D-12B8ED1C44C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

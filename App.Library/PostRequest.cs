@@ -11,10 +11,11 @@ namespace App.Library
 {
     public static class PostRequest
     {
-        public static async Task<string> PostApiAsync(string ApiUrl, CartItemDetail game)
+
+        public static async Task<string> PostApiAsync<T>(string ApiUrl, T d)
         {
 
-            var json = JsonConvert.SerializeObject(game);
+            var json = JsonConvert.SerializeObject(d);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
 

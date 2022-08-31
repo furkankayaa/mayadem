@@ -34,7 +34,7 @@ namespace Cart.API.Migrations
                     b.Property<string>("Publisher")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("UserID")
                         .HasColumnType("longtext");
 
                     b.HasKey("ID");

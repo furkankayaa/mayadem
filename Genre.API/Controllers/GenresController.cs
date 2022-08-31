@@ -46,7 +46,7 @@ namespace Genre.API.Controllers
         }
 
         [HttpGet]
-        [Route("GetById/{id}")]
+        [Route("[action]/{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
             

@@ -21,11 +21,11 @@ namespace Cart.API.Controllers
         }
 
         [Route("[action]")]
-        public GenericResponse<List<CartItemDetail>> GetAll(string userName)
+        public GenericResponse<List<CartItemDetail>> GetAll(string userId)
         {
 
             //var cartItems = _context.CartItemDetails.ToList();
-            var cartItems = _context.CartItemDetails.ToList().Where(x => x.UserName == userName).ToList();
+            var cartItems = _context.CartItemDetails.ToList().Where(x => x.UserID == userId).ToList();
 
             GenericResponse<List<CartItemDetail>> toReturn = new GenericResponse<List<CartItemDetail>>() { Response = cartItems, Code = ResponseCode.OK };
 
@@ -36,9 +36,9 @@ namespace Cart.API.Controllers
         [HttpPost]
         public GenericResponse<CartItemDetail> Post([FromBody] CartItemDetail game)
         {
-            CartItemDetail addItem = new CartItemDetail {GameName = game.GameName, GamePrice = game.GamePrice, ImageUrl = game.ImageUrl, Publisher = game.Publisher, UserName = game.UserName };
+            CartItemDetail addItem = new CartItemDetail {GameName = game.GameName, GamePrice = game.GamePrice, ImageUrl = game.ImageUrl, Publisher = game.Publisher, UserID = game.UserID };
 
-            var Exists = _context.CartItemDetails.Where(x => x.GameName == addItem.GameName && x.UserName == addItem.UserName).FirstOrDefault();
+            var Exists = _context.CartItemDetails.Where(x => x.GameName == addItem.GameName && x.UserID == addItem.UserID).FirstOrDefault();
             if (Exists == null)
             {
                 _context.CartItemDetails.Add(addItem);
@@ -56,11 +56,10 @@ namespace Cart.API.Controllers
 
 
         [HttpDelete("[action]")]
-        public GenericResponse<CartItemDetail> Delete(int id, string userName)
+        public GenericResponse<CartItemDetail> Delete(int id, string userId)
         {
-
             var toDelete = _context.CartItemDetails.Find(id);
-            if (toDelete.UserName == userName)
+            if (toDelete.UserID == userId)
             {
                 _context.CartItemDetails.Remove(toDelete);
                 _context.SaveChanges();

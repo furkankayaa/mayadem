@@ -13,6 +13,6 @@ namespace App.Library
         public double GamePrice { get; set; }
         public string ImageUrl { get; set; }
         public string Publisher { get; set; }
-        public string UserName { get; set; }
+        public string UserID { get; set; }
     }
 }
