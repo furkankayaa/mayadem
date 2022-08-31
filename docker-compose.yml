@@ -78,3 +78,17 @@ services:
     environment:
       - DBHOST=db
       - ASPNETCORE_ENVIRONMENT=Development
+
+  order:
+    container_name: order.api
+    build:
+      context: .
+      dockerfile: Dockerfile_order
+    depends_on:
+      - db
+    ports:
+      - "5006:80"
+    restart: always
+    environment:
+      - DBHOST=db
+      - ASPNETCORE_ENVIRONMENT=Development
